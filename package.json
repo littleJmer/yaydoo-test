@@ -4,6 +4,7 @@
   "description": "Software Engineer Test",
   "main": "index.js",
   "scripts": {
+    "after-30-days": "node src/after-30-days.js",
     "test": "mocha spec/*.js"
   },
   "repository": {
