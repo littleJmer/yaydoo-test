@@ -4,7 +4,8 @@ const {
 	Product,
 	Coverage,
 	LowCoverage,
-    MediumCoverage
+    MediumCoverage,
+    MegaCoverage
 } = require('../src/lib');
 
 function updateProductNtimes(days = 0, product) {
@@ -63,6 +64,21 @@ describe("Successful Cases", function () {
 			updateProductNtimes(9, instance);
 			expect(instance.sellIn).to.be.equal(-11);
 			expect(instance.price).to.be.equal(0);
+		});
+	});
+
+    describe("MegaCoverage", function () {
+		let instance = new MegaCoverage(5, 80);
+		it("should be instance of Coverage", function () {
+			expect(instance).to.be.instanceOf(Coverage);
+		});
+		it("price can be higher than 50", function () {
+			expect(instance.price).to.be.equal(80);
+		});
+		it("never has to be decreases in price or sellIn", function () {
+			updateProductNtimes(9, instance);
+			expect(instance.sellIn).to.be.equal(5);
+			expect(instance.price).to.be.equal(80);
 		});
 	});
 
