@@ -6,7 +6,8 @@ const {
 	LowCoverage,
     MediumCoverage,
     MegaCoverage,
-    SpecialFullCoverage
+    SpecialFullCoverage,
+    SuperSale
 } = require('../src/lib');
 
 function updateProductNtimes(days = 0, product) {
@@ -111,6 +112,28 @@ describe("Successful Cases", function () {
 		it("should price drops to 0 when no more days left", function () {
 			updateProductNtimes(1, instance);
 			expect(instance.sellIn).to.be.equal(-1);
+			expect(instance.price).to.be.equal(0);
+		});
+	});
+
+    describe("SuperSale", function () {
+		let instance = new SuperSale(5, 20);
+		it("should be instance of Coverage", function () {
+			expect(instance).to.be.instanceOf(Coverage);
+		});
+		it("should decrease sellIn and price, during 5 days", function () {
+			updateProductNtimes(5, instance);
+			expect(instance.sellIn).to.be.equal(0);
+			expect(instance.price).to.be.equal(10);
+		});
+		it("if sellIn droped 0, price decreases twice as fast", function () {
+			updateProductNtimes(2, instance);
+			expect(instance.sellIn).to.be.equal(-2);
+			expect(instance.price).to.be.equal(2);
+		});
+		it("price can not be less than 0", function () {
+			updateProductNtimes(1, instance);
+			expect(instance.sellIn).to.be.equal(-3);
 			expect(instance.price).to.be.equal(0);
 		});
 	});
