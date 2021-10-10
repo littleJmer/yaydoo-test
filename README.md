@@ -5,6 +5,7 @@ Product Class, on this way we can create a difirent product with the same attrib
 
 # Hierarchy class
 
+```
 Product
 ├── Coverage
 │    ├── LowCoverage
@@ -16,6 +17,7 @@ Product
 ├── **Membership**
 │    ├── **MembershipType1**
 │    ├── **MembershipType2**
+```
 
 # Commands
 
