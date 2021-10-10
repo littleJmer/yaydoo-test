@@ -14,9 +14,9 @@ Product
 │    ├── MegaCoverage
 │    ├── SpecialFullCoverage
 │    └── SuperSale
-├── **Membership**
-│    ├── **MembershipType1**
-│    ├── **MembershipType2**
+├── `Membership`
+│    ├── MembershipType1
+│    ├── MembershipType2
 ```
 
 # Commands
