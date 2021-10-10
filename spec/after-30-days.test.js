@@ -8,7 +8,9 @@ const {
     MegaCoverage,
     SpecialFullCoverage,
     SuperSale,
-    FullCoverage
+    FullCoverage,
+    CarInsurance,
+    CoveragePrinter
 } = require('../src/lib');
 
 function updateProductNtimes(days = 0, product) {
@@ -158,6 +160,50 @@ describe("Successful Cases", function () {
             updateProductNtimes(1, instance);
             expect(instance.sellIn).to.be.equal(-3);
             expect(instance.price).to.be.equal(0);
+        });
+    });
+
+    describe("CarInsurance", function () {
+        let arrayOfCoverages = [
+            new LowCoverage(5, 25)
+        ];
+        let instance = new CarInsurance(arrayOfCoverages);
+        it(`should has ${arrayOfCoverages.length} coverages`, function () {
+            expect(instance.coverages.length).to.be.equal(arrayOfCoverages.length);
+        });
+        it(`coverages assigned should be same`, function () {
+            expect(instance.coverages).to.be.equal(arrayOfCoverages);
+        });
+        it(`should decrease sellIn of each product`, function () {
+            expect(() => {
+                instance.updatePrice();
+            }).to.decrease(arrayOfCoverages[0], 'sellIn');
+        });
+    });
+
+    describe("CoveragePrinter", function () {
+        let arrayOfCoverages = [
+            new LowCoverage(5, 25)
+        ];
+        let instance = new CoveragePrinter(arrayOfCoverages);
+        it(`should assign correctly coverages`, function () {
+            expect(instance.coverages).to.deep.equal(arrayOfCoverages);
+        });
+        it(`should assign correctly coverages using set class`, function () {
+            instance.coverages = arrayOfCoverages;
+            expect(instance.coverages).to.deep.equal(arrayOfCoverages);
+        });
+        it(`should return raw text`, function () {
+            let rawText = instance.rawText();
+            expect(rawText).to.be.equal(`name, sellIn, price\nLow Coverage, 5, 25\n`);
+        });
+        it(`should return an array`, function () {
+            let array = instance.array();
+            expect(array).to.have.same.deep.members([{ name: 'Low Coverage', sellIn: 5, price: 25 }]);
+        });
+        it(`setting products by set class`, function () {
+            instance.products = arrayOfCoverages;
+            expect(instance.products).to.be.equal(arrayOfCoverages);
         });
     });
 
