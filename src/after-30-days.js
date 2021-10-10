@@ -9,7 +9,7 @@ const {
     CoveragePrinter
 } = require('./lib');
 
-const productsAtDayZero = [
+const coveragesAtDayZero = [
     new MediumCoverage(10, 20),
     new FullCoverage(2, 0),
     new LowCoverage(5, 7),
@@ -21,8 +21,8 @@ const productsAtDayZero = [
     new SuperSale(3, 6),
 ];
 
-const carInsurance = new CarInsurance(productsAtDayZero);
-const coveragePrinter = new CoveragePrinter(carInsurance.products);
+const carInsurance = new CarInsurance(coveragesAtDayZero);
+const coveragePrinter = new CoveragePrinter(carInsurance.coverages);
 
 console.log(`OMGHAI!`);
 console.log(`-------- day 0 --------`);
