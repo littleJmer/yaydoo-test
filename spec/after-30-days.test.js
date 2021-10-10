@@ -208,3 +208,29 @@ describe("Successful Cases", function () {
     });
 
 });
+
+describe("Edge Cases", function () {
+
+	describe("Price should not be grather than 50 and less than 0", function () {
+		it('should be set price as 50 if price passed is higher than 50', function () {
+			let instance = new LowCoverage(5, 51);
+			expect(instance.price).to.be.equal(50);
+		});
+		it('should be set price as 0 if price passed is less than 0', function () {
+			let instance = new LowCoverage(5, -1);
+			expect(instance.price).to.be.equal(0);
+		});
+	});
+
+	describe("Mega Coverage has price limit of 80", function () {
+		it('should be set price as 80 if price passed is higher than 80', function () {
+			let instance = new MegaCoverage(5, 81);
+			expect(instance.price).to.be.equal(80);
+		});
+		it('should be set price as 0 if price passed is less than 0', function () {
+			let instance = new MegaCoverage(5, -1);
+			expect(instance.price).to.be.equal(0);
+		});
+	});
+
+});
